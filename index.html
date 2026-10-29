@@ -1,0 +1,2678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manroop Kaur Chauhan &mdash; Portfolio</title>
+  <meta name="description" content="Portfolio of Manroop Kaur Chauhan &mdash; First-Year B.Tech Student at NST x RU, RMO Qualifier, National Debater, and purposeful explorer bridging advanced mathematics, computation, and societal impact.">
+  
+  <!-- Typography: Playfair Display (headings), Poppins (body), JetBrains Mono (accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN SYSTEM VARIABLES
+       Palette: Dark navy base with violet, pink, cyan, and gold accents.
+       Typography: Playfair Display, Poppins, JetBrains Mono.
+       ========================================================================== */
+    :root {
+      /* Dark Navy Foundations */
+      --bg-darkest: #040711;
+      --bg-navy-deep: #070c1e;
+      --bg-navy-surface: #0c1430;
+      --bg-navy-elevated: #111b40;
+
+      /* Glassmorphism Surfaces */
+      --glass-surface: rgba(14, 22, 52, 0.62);
+      --glass-surface-hover: rgba(20, 31, 72, 0.78);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-border-hover: rgba(168, 85, 247, 0.42);
+      --glass-inner-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+      --glass-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6);
+
+      /* Accent Hues */
+      --violet-primary: #8b5cf6;
+      --violet-light: #a78bfa;
+      --violet-glow: rgba(139, 92, 246, 0.35);
+
+      --pink-primary: #ec4899;
+      --pink-light: #f472b6;
+      --pink-glow: rgba(236, 72, 153, 0.35);
+
+      --cyan-primary: #06b6d4;
+      --cyan-light: #22d3ee;
+      --cyan-glow: rgba(6, 182, 212, 0.35);
+
+      --gold-primary: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-glow: rgba(245, 158, 11, 0.38);
+
+      /* Typography Colors */
+      --text-pure: #ffffff;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      /* Fonts */
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      /* Layout & Spacing */
+      --container-width: 1180px;
+      --section-spacing: clamp(4.5rem, 8vw, 7.5rem);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      /* Responsive Orbit Radius for Hero Math Symbols */
+      --orbit-radius: clamp(105px, 14vw, 150px);
+
+      /* Motion */
+      --transition-base: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ==========================================================================
+       2. GLOBAL RESET & BASE RULES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+      background-color: var(--bg-darkest);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background-color: var(--bg-darkest);
+      line-height: 1.68;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--violet-primary);
+      color: #ffffff;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--cyan-primary);
+      outline-offset: 4px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ==========================================================================
+       3. AMBIENT BACKGROUND GLOWS & GRID OVERLAY
+       Drifting blurred blobs (violet, pink, cyan, gold).
+       ========================================================================== */
+    .ambient-glow-wrapper {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .ambient-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.42;
+      transform: translate3d(0, 0, 0);
+      will-change: transform, opacity;
+    }
+
+    .blob-violet {
+      width: 520px;
+      height: 520px;
+      top: -120px;
+      left: -120px;
+      background: radial-gradient(circle, var(--violet-primary) 0%, transparent 70%);
+      animation: drift-blob-1 22s ease-in-out infinite alternate;
+    }
+
+    .blob-cyan {
+      width: 560px;
+      height: 560px;
+      top: 30%;
+      right: -160px;
+      background: radial-gradient(circle, var(--cyan-primary) 0%, transparent 70%);
+      animation: drift-blob-2 26s ease-in-out infinite alternate;
+    }
+
+    .blob-pink {
+      width: 480px;
+      height: 480px;
+      bottom: 25%;
+      left: -120px;
+      background: radial-gradient(circle, var(--pink-primary) 0%, transparent 70%);
+      animation: drift-blob-3 24s ease-in-out infinite alternate;
+    }
+
+    .blob-gold {
+      width: 450px;
+      height: 450px;
+      bottom: -100px;
+      right: 18%;
+      background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+      animation: drift-blob-1 28s ease-in-out infinite alternate-reverse;
+      opacity: 0.28;
+    }
+
+    .ambient-dot-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.65;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(1.25rem, 4vw, 2.5rem);
+      padding-right: clamp(1.25rem, 4vw, 2.5rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       4. TYPOGRAPHY & REUSABLE UI PATTERNS
+       ========================================================================== */
+    .section-wrapper {
+      padding-top: var(--section-spacing);
+      padding-bottom: var(--section-spacing);
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto clamp(2.5rem, 5vw, 4.2rem);
+    }
+
+    .section-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.95rem;
+      border-radius: var(--radius-full);
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.32);
+      color: var(--violet-light);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.1rem, 4.6vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.16;
+      color: var(--text-pure);
+      margin-bottom: 1rem;
+      letter-spacing: -0.015em;
+    }
+
+    .section-subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.72;
+    }
+
+    /* Gradient Text Utilities */
+    .grad-text-hero {
+      background: linear-gradient(
+        125deg,
+        #ffffff 0%,
+        #f1f5f9 20%,
+        var(--violet-light) 42%,
+        var(--pink-light) 68%,
+        var(--cyan-light) 88%,
+        #ffffff 100%
+      );
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-flow 8s ease infinite;
+    }
+
+    .grad-text-pink {
+      background: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-text-cyan {
+      background: linear-gradient(135deg, #67e8f9 0%, #06b6d4 60%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-text-gold {
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 60%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Twinkling Sparkles */
+    .sparkle-icon {
+      display: inline-block;
+      vertical-align: middle;
+      color: var(--gold-light);
+      animation: sparkle-flash 3s ease-in-out infinite;
+    }
+
+    .sparkle-delay-1 { animation-delay: 0.8s; }
+    .sparkle-delay-2 { animation-delay: 1.6s; }
+    .sparkle-delay-3 { animation-delay: 2.4s; }
+
+    /* ==========================================================================
+       5. CARD SYSTEM: GLASSMORPHISM, LIFT, SHINE, AND 3D TILT
+       ========================================================================== */
+    .perspective-grid {
+      perspective: 1200px;
+    }
+
+    .glass-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        var(--glass-shadow),
+        var(--glass-inner-specular);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 3.8vw, 2.5rem);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: 
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease,
+        background 0.4s ease,
+        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Card Light Sweep (Shine) */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 75%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.16),
+        transparent
+      );
+      transform: skewX(-20deg);
+      transition: left 0.85s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .glass-card:hover::before {
+      left: 155%;
+    }
+
+    /* Card Hover: Lift & Subtle 3D Tilt */
+    .glass-card:hover {
+      transform: translateY(-8px) rotateX(2.2deg) rotateY(-1.2deg);
+      border-color: var(--glass-border-hover);
+      background: var(--glass-surface-hover);
+      box-shadow: 
+        0 28px 55px -14px rgba(139, 92, 246, 0.28),
+        0 0 24px 0 rgba(139, 92, 246, 0.16),
+        var(--glass-inner-specular);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--radius-full);
+      font-size: 0.94rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: var(--transition-bounce);
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--violet-primary) 0%, var(--pink-primary) 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 25px -6px rgba(139, 92, 246, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 34px -6px rgba(236, 72, 153, 0.65);
+      filter: brightness(1.08);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       6. STICKY GLASS NAVIGATION BAR
+       ========================================================================== */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 0.85rem 0;
+      background: rgba(4, 7, 17, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--violet-primary), var(--pink-primary));
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      transition: var(--transition-base);
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .nav-cta {
+      padding: 0.48rem 1.15rem;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-family: var(--font-mono);
+      color: var(--cyan-primary);
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      transition: var(--transition-base);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-cta:hover {
+      background: rgba(6, 182, 212, 0.22);
+      border-color: var(--cyan-light);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Nav scroll helper */
+    .nav-mobile-scroll {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-mobile-scroll {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 0.35rem;
+        padding-top: 0.55rem;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
+      }
+      .nav-mobile-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-mobile-link {
+        padding: 0.35rem 0.85rem;
+        border-radius: var(--radius-full);
+        font-size: 0.82rem;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-secondary);
+      }
+    }
+
+    /* ==========================================================================
+       7. HERO SECTION
+       Animated gradient name, typewriter tagline, monogram avatar with orbiting math symbols.
+       ========================================================================== */
+    .hero-section {
+      padding-top: clamp(3rem, 6vw, 5.5rem);
+      padding-bottom: clamp(4rem, 8vw, 6.5rem);
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      width: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.42rem 1.05rem;
+      border-radius: var(--radius-full);
+      background: rgba(12, 20, 48, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .hero-name {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 6vw, 4.75rem);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Typewriter Tagline (CSS Only) */
+    .typewriter-box {
+      margin-bottom: 1.75rem;
+      min-height: 2.2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid var(--pink-primary);
+      font-family: var(--font-mono);
+      font-size: clamp(0.88rem, 2.1vw, 1.22rem);
+      font-weight: 500;
+      color: var(--cyan-light);
+      letter-spacing: -0.01em;
+      width: 0;
+      animation: 
+        typewriter-action 4s steps(37, end) 0.6s infinite alternate,
+        caret-blink 0.8s step-end infinite;
+      max-width: 100%;
+    }
+
+    .hero-bio {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.76;
+      margin-bottom: 2.25rem;
+      max-width: 550px;
+    }
+
+    .hero-bio strong {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Monogram Avatar & Orbiting Math Symbols */
+    .avatar-showcase {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2.5rem 0;
+    }
+
+    .orbit-stage {
+      position: relative;
+      width: clamp(280px, 32vw, 360px);
+      height: clamp(280px, 32vw, 360px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Concentric Decorative Orbital Rings */
+    .orbit-ring-outer {
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      border: 1px solid rgba(236, 72, 153, 0.16);
+      pointer-events: none;
+    }
+
+    .orbit-ring-middle {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px dashed rgba(139, 92, 246, 0.32);
+      pointer-events: none;
+      animation: spin-clockwise 38s linear infinite;
+    }
+
+    .orbit-ring-inner {
+      position: absolute;
+      inset: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      pointer-events: none;
+      animation: spin-clockwise 28s linear infinite reverse;
+    }
+
+    /* Central Monogram Avatar Card */
+    .monogram-avatar {
+      width: clamp(125px, 15vw, 155px);
+      height: clamp(125px, 15vw, 155px);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #16214a, #080d22);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 0 38px rgba(139, 92, 246, 0.42),
+        inset 0 0 25px rgba(6, 182, 212, 0.28),
+        0 18px 40px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      transition: var(--transition-bounce);
+      cursor: default;
+    }
+
+    .monogram-avatar:hover {
+      transform: scale(1.06);
+      border-color: var(--pink-primary);
+      box-shadow: 
+        0 0 55px rgba(236, 72, 153, 0.55),
+        inset 0 0 32px rgba(139, 92, 246, 0.4);
+    }
+
+    .monogram-initials {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.8vw, 2.6rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 10%, #e2e8f0 60%, var(--cyan-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .monogram-sub {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 0.35rem;
+      font-weight: 600;
+    }
+
+    /* Orbiting Math Symbols Track */
+    .orbit-symbols-carousel {
+      position: absolute;
+      inset: 0;
+      animation: spin-clockwise 26s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Math Symbol Badges: ∑ π ∫ ∞ √ θ */
+    .math-symbol-pill {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      margin-top: -22px;
+      margin-left: -22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 21, 52, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50%;
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      animation: spin-counter 26s linear infinite;
+    }
+
+    /* Position symbols using responsive calc(--orbit-radius) */
+    .sym-1 { transform: rotate(0deg) translateY(calc(-1 * var(--orbit-radius))) rotate(0deg); color: var(--gold-primary); border-color: rgba(245, 158, 11, 0.45); }
+    .sym-2 { transform: rotate(60deg) translateY(calc(-1 * var(--orbit-radius))) rotate(-60deg); color: var(--cyan-primary); border-color: rgba(6, 182, 212, 0.45); }
+    .sym-3 { transform: rotate(120deg) translateY(calc(-1 * var(--orbit-radius))) rotate(-120deg); color: var(--violet-light); border-color: rgba(168, 85, 247, 0.45); }
+    .sym-4 { transform: rotate(180deg) translateY(calc(-1 * var(--orbit-radius))) rotate(-180deg); color: var(--pink-primary); border-color: rgba(236, 72, 153, 0.45); }
+    .sym-5 { transform: rotate(240deg) translateY(calc(-1 * var(--orbit-radius))) rotate(-240deg); color: #38bdf8; border-color: rgba(56, 189, 248, 0.45); }
+    .sym-6 { transform: rotate(300deg) translateY(calc(-1 * var(--orbit-radius))) rotate(-300deg); color: #fde047; border-color: rgba(253, 224, 71, 0.45); }
+
+    /* ==========================================================================
+       8. ABOUT SECTION (Three Glass Cards: Student, Problem Solver, Communicator)
+       ========================================================================== */
+    .about-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .about-card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .about-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition-bounce);
+    }
+
+    .about-icon-student {
+      background: rgba(139, 92, 246, 0.16);
+      border-color: rgba(139, 92, 246, 0.38);
+      color: var(--violet-light);
+    }
+
+    .about-icon-solver {
+      background: rgba(6, 182, 212, 0.16);
+      border-color: rgba(6, 182, 212, 0.38);
+      color: var(--cyan-light);
+    }
+
+    .about-icon-communicator {
+      background: rgba(236, 72, 153, 0.16);
+      border-color: rgba(236, 72, 153, 0.38);
+      color: var(--pink-light);
+    }
+
+    .glass-card:hover .about-icon-box {
+      transform: scale(1.12) rotate(4deg);
+    }
+
+    .about-role-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.35rem;
+    }
+
+    .about-heading {
+      font-family: var(--font-heading);
+      font-size: 1.62rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.95rem;
+    }
+
+    .about-text {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .about-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .about-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ==========================================================================
+       9. SKILLS SECTION (Animated Progress Bars)
+       ========================================================================== */
+    .skills-split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 3.5vw, 2.5rem);
+      align-items: start;
+    }
+
+    .skills-overview-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .skills-quote {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 2.3vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.42;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .skills-narrative {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .skills-stat-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .skills-stat-tile {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-digits {
+      font-family: var(--font-mono);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--cyan-primary);
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-caption {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Skill Bars Container */
+    .skills-bars-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.65rem;
+    }
+
+    .skill-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .skill-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .skill-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: #ffffff;
+    }
+
+    .skill-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-gold {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold-light);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .badge-cyan {
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--cyan-light);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+    }
+
+    .badge-pink {
+      background: rgba(236, 72, 153, 0.15);
+      color: var(--pink-light);
+      border: 1px solid rgba(236, 72, 153, 0.35);
+    }
+
+    .badge-violet {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--violet-light);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+    }
+
+    .skill-score {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .meter-channel {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.45);
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      position: relative;
+      animation: bar-grow 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform-origin: left;
+    }
+
+    .meter-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
+        transparent
+      );
+      animation: meter-shine 2.8s infinite;
+    }
+
+    .fill-advanced-math {
+      width: 92%;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24, #fef08a);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.45);
+    }
+
+    .fill-basic-python {
+      width: 52%;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    .fill-deductive-logic {
+      width: 95%;
+      background: linear-gradient(90deg, #8b5cf6, #c084fc);
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+    }
+
+    .fill-debate-oratory {
+      width: 90%;
+      background: linear-gradient(90deg, #ec4899, #f43f5e);
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.4);
+    }
+
+    .skill-footnote {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       10. ACHIEVEMENTS SECTION (Gold Medal Cards)
+       ========================================================================== */
+    .achievements-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .gold-medal-card {
+      position: relative;
+      border: 1px solid rgba(245, 158, 11, 0.28);
+      background: linear-gradient(
+        145deg,
+        rgba(28, 22, 48, 0.75) 0%,
+        rgba(15, 21, 52, 0.62) 100%
+      );
+      box-shadow: 
+        0 20px 45px -15px rgba(0, 0, 0, 0.65),
+        0 0 25px rgba(245, 158, 11, 0.12);
+    }
+
+    .gold-medal-card:hover {
+      border-color: rgba(245, 158, 11, 0.65);
+      box-shadow: 
+        0 26px 58px -12px rgba(245, 158, 11, 0.3),
+        0 0 35px rgba(245, 158, 11, 0.22);
+    }
+
+    .gold-medal-corner-tag {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: var(--gold-light);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .gold-medal-icon-wrap {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.05) 70%);
+      border: 2px solid rgba(245, 158, 11, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 26px rgba(245, 158, 11, 0.32);
+      transition: var(--transition-bounce);
+    }
+
+    .gold-medal-card:hover .gold-medal-icon-wrap {
+      transform: scale(1.12) rotate(6deg);
+      box-shadow: 0 0 38px rgba(245, 158, 11, 0.55);
+    }
+
+    .achievement-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.45rem, 2.5vw, 1.88rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.01em;
+    }
+
+    .achievement-body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: 1.5rem;
+    }
+
+    .achievement-callout {
+      background: rgba(0, 0, 0, 0.28);
+      border-left: 3px solid var(--gold-primary);
+      padding: 0.8rem 1.1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.88rem;
+      color: #fef08a;
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       11. HOBBIES SECTION (Floating Bubbles with Custom SVG Icons)
+       Basketball, Swimming, Dancing, Reading, Writing
+       ========================================================================== */
+    .hobbies-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.25rem, 2.5vw, 2.2rem);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hobby-bubble {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: clamp(150px, 17vw, 175px);
+      height: clamp(150px, 17vw, 175px);
+      border-radius: 50%;
+      background: rgba(16, 24, 58, 0.68);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 14px 32px rgba(0, 0, 0, 0.42),
+        inset 0 1px 1px rgba(255, 255, 255, 0.22);
+      text-align: center;
+      padding: 1rem;
+      cursor: default;
+      transition: var(--transition-bounce);
+      position: relative;
+    }
+
+    /* Floating Bubble Animations */
+    .bubble-float-1 { animation: float-bubble 5.2s ease-in-out infinite; }
+    .bubble-float-2 { animation: float-bubble 6.4s ease-in-out infinite 0.7s; }
+    .bubble-float-3 { animation: float-bubble 5.8s ease-in-out infinite 1.3s; }
+    .bubble-float-4 { animation: float-bubble 6.8s ease-in-out infinite 2s; }
+    .bubble-float-5 { animation: float-bubble 6.1s ease-in-out infinite 2.6s; }
+
+    .hobby-bubble:hover {
+      transform: translateY(-12px) scale(1.08);
+      background: rgba(26, 36, 84, 0.88);
+      box-shadow: 
+        0 22px 42px rgba(139, 92, 246, 0.38),
+        0 0 28px rgba(6, 182, 212, 0.32),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    }
+
+    .bubble-float-1:hover { border-color: var(--gold-primary); }
+    .bubble-float-2:hover { border-color: var(--cyan-primary); }
+    .bubble-float-3:hover { border-color: var(--pink-primary); }
+    .bubble-float-4:hover { border-color: var(--violet-light); }
+    .bubble-float-5:hover { border-color: #38bdf8; }
+
+    .hobby-svg-box {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.55rem;
+      transition: var(--transition-base);
+    }
+
+    .bubble-float-1 .hobby-svg-box { color: var(--gold-light); }
+    .bubble-float-2 .hobby-svg-box { color: var(--cyan-light); }
+    .bubble-float-3 .hobby-svg-box { color: var(--pink-light); }
+    .bubble-float-4 .hobby-svg-box { color: var(--violet-light); }
+    .bubble-float-5 .hobby-svg-box { color: #7dd3fc; }
+
+    .hobby-title {
+      font-family: var(--font-heading);
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.2rem;
+    }
+
+    .hobby-trait {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       12. FUTURE SECTION (Spinning Compass & "Still Exploring")
+       Framed as curiosity, not indecision.
+       ========================================================================== */
+    .future-glass-card {
+      background: linear-gradient(
+        135deg,
+        rgba(16, 24, 64, 0.72) 0%,
+        rgba(9, 14, 38, 0.82) 100%
+      );
+      border: 1px solid rgba(6, 182, 212, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .future-card-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+
+    .compass-centerpiece {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Spinning Compass Housing */
+    .compass-dial {
+      width: clamp(200px, 24vw, 245px);
+      height: clamp(200px, 24vw, 245px);
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #121c42 0%, #070c20 80%);
+      border: 3px solid rgba(6, 182, 212, 0.42);
+      box-shadow: 
+        0 0 42px rgba(6, 182, 212, 0.28),
+        inset 0 0 32px rgba(0, 0, 0, 0.85);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .compass-ticks-ring {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+    }
+
+    .compass-cardinal-labels {
+      position: absolute;
+      inset: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .cardinal-point-n { position: absolute; top: 0; left: 50%; transform: translateX(-50%); color: var(--pink-primary); font-size: 0.92rem; }
+    .cardinal-point-s { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+    .cardinal-point-e { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+    .cardinal-point-w { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+
+    /* Spinning Compass Needle */
+    .compass-needle-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: compass-sweep-drift 14s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    }
+
+    .compass-pivot-pin {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
+      z-index: 10;
+    }
+
+    .compass-label-pill {
+      margin-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--cyan-primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .future-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .future-tagline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--cyan-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .future-main-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.8vw, 2.75rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .future-manifesto {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.76;
+      margin-bottom: 1.75rem;
+    }
+
+    .exploration-quadrant {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .quadrant-box {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .quadrant-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.2rem;
+    }
+
+    .quadrant-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       13. PURPOSE SECTION
+       Headline: "Success, measured by who I lift up"
+       Beating heart with ripples spreading outward, three pillars, closing vow.
+       ========================================================================== */
+    .purpose-header-block {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    .purpose-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.35rem, 5.2vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .purpose-intro {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.72;
+    }
+
+    /* Centerpiece Heart & Expanding Outward Ripples */
+    .heart-ripple-stage {
+      position: relative;
+      width: 230px;
+      height: 230px;
+      margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ripple-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(236, 72, 153, 0.65);
+      pointer-events: none;
+      animation: ripple-wave 3.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+    }
+
+    .ripple-delay-1 { animation-delay: 0s; }
+    .ripple-delay-2 { animation-delay: 1.05s; }
+    .ripple-delay-3 { animation-delay: 2.1s; }
+
+    .pulsing-heart-emblem {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #f43f5e 0%, #be123c 60%, #881337 100%);
+      box-shadow: 
+        0 0 38px rgba(244, 63, 94, 0.7),
+        inset 0 2px 4px rgba(255, 255, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      position: relative;
+      z-index: 5;
+      animation: cardiac-heartbeat 1.4s ease-in-out infinite;
+    }
+
+    /* Three Pillars Grid */
+    .three-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.25rem, 2.5vw, 2rem);
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .pillar-card-box {
+      text-align: center;
+      padding: clamp(1.75rem, 3vw, 2.5rem) 1.5rem;
+    }
+
+    .pillar-indexer {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--violet-light);
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    .pillar-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+
+    /* Closing First-Person Vow Manifesto Card */
+    .vow-manifesto-card {
+      max-width: 850px;
+      margin: 0 auto;
+      background: linear-gradient(
+        135deg,
+        rgba(28, 18, 54, 0.78) 0%,
+        rgba(15, 24, 64, 0.65) 100%
+      );
+      border: 1px solid rgba(236, 72, 153, 0.32);
+      position: relative;
+      padding: clamp(2rem, 5vw, 3.6rem);
+      text-align: center;
+      box-shadow: 
+        0 28px 65px -15px rgba(0, 0, 0, 0.75),
+        0 0 35px rgba(236, 72, 153, 0.16);
+    }
+
+    .vow-manifesto-card::before {
+      content: '“';
+      position: absolute;
+      top: 1rem;
+      left: 2rem;
+      font-family: var(--font-heading);
+      font-size: 6.5rem;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.05);
+      pointer-events: none;
+    }
+
+    .vow-tag-pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+      margin-bottom: 1.25rem;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .vow-declaration {
+      font-family: var(--font-heading);
+      font-size: clamp(1.22rem, 2.6vw, 1.68rem);
+      font-weight: 500;
+      line-height: 1.65;
+      color: #ffffff;
+      margin-bottom: 1.85rem;
+      font-style: italic;
+    }
+
+    .vow-signoff {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .vow-signee-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .vow-signee-creds {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       14. FOOTER
+       ========================================================================== */
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      background: rgba(2, 4, 12, 0.96);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+    }
+
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 3rem;
+    }
+
+    .footer-col-headline {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      margin-bottom: 1.1rem;
+      font-weight: 600;
+    }
+
+    .footer-links-col {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-anchor {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: var(--transition-base);
+    }
+
+    .footer-anchor:hover {
+      color: var(--cyan-light);
+      transform: translateX(4px);
+    }
+
+    .footer-sub-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    .return-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      transition: var(--transition-base);
+    }
+
+    .return-top-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       15. KEYFRAME ANIMATIONS (CSS ONLY)
+       ========================================================================== */
+    @keyframes drift-blob-1 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 45px) scale(1.1); }
+      100% { transform: translate(-45px, 85px) scale(0.95); }
+    }
+
+    @keyframes drift-blob-2 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-75px, -55px) scale(1.14); }
+      100% { transform: translate(55px, 45px) scale(0.9); }
+    }
+
+    @keyframes drift-blob-3 {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(55px, -65px) scale(1.08); }
+      100% { transform: translate(-35px, 35px) scale(0.92); }
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.25); }
+    }
+
+    @keyframes gradient-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes typewriter-action {
+      0%, 12% { width: 0; }
+      85%, 100% { width: 100%; }
+    }
+
+    @keyframes caret-blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes spin-clockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes spin-counter {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes float-bubble {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes compass-sweep-drift {
+      0% { transform: rotate(0deg); }
+      22% { transform: rotate(26deg); }
+      48% { transform: rotate(-16deg); }
+      68% { transform: rotate(14deg); }
+      88% { transform: rotate(-6deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes cardiac-heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1.04); }
+      42% { transform: scale(1.22); }
+      70% { transform: scale(1); }
+    }
+
+    @keyframes ripple-wave {
+      0% {
+        width: 88px;
+        height: 88px;
+        opacity: 0.85;
+      }
+      100% {
+        width: 280px;
+        height: 280px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes bar-grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes meter-shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    @keyframes sparkle-flash {
+      0%, 100% { opacity: 0.25; transform: scale(0.85) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(45deg); filter: drop-shadow(0 0 6px var(--gold-light)); }
+    }
+
+    /* ==========================================================================
+       16. SCROLL REVEAL (animation-timeline: view() with Graceful Fallback)
+       ========================================================================== */
+    @supports (animation-timeline: view()) {
+      .reveal-on-scroll {
+        animation: reveal-fade-up linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+      }
+
+      @keyframes reveal-fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(32px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+    }
+
+    @supports not (animation-timeline: view()) {
+      .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ==========================================================================
+       17. ACCESSIBILITY: PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .typewriter-text {
+        width: 100% !important;
+        border-right: none !important;
+      }
+      .ambient-blob {
+        display: none !important;
+      }
+      .meter-fill {
+        transform: scaleX(1) !important;
+      }
+      .orbit-symbols-carousel, .orbit-ring-middle, .orbit-ring-inner {
+        animation: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       18. RESPONSIVE MEDIA QUERIES (Down to 360px)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .about-cards-grid, .three-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-columns-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .skills-split-layout, .achievements-columns, .future-card-grid {
+        grid-template-columns: 1fr;
+      }
+      .compass-centerpiece {
+        margin-bottom: 1.5rem;
+      }
+      .exploration-quadrant {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-cards-grid, .three-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-columns-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .skills-stat-strip {
+        grid-template-columns: 1fr;
+      }
+      .hobbies-cluster {
+        gap: 1rem;
+      }
+      .hobby-bubble {
+        width: 135px;
+        height: 135px;
+      }
+      .typewriter-text {
+        font-size: 0.76rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Ambient Blurred Glowing Blobs -->
+  <div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="ambient-blob blob-violet"></div>
+    <div class="ambient-blob blob-cyan"></div>
+    <div class="ambient-blob blob-pink"></div>
+    <div class="ambient-blob blob-gold"></div>
+    <div class="ambient-dot-grid"></div>
+  </div>
+
+  <!-- STICKY GLASS NAVIGATION BAR -->
+  <header class="nav-header" role="banner">
+    <div class="container nav-container">
+      <a href="#top" class="nav-logo" aria-label="Manroop Kaur Chauhan &mdash; Home">
+        <span class="nav-logo-badge">MK</span>
+        <span>Manroop<span style="color: var(--pink-primary);">.</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#hobbies" class="nav-link">Hobbies</a>
+        <a href="#future" class="nav-link">Future</a>
+        <a href="#purpose" class="nav-link">Purpose</a>
+      </nav>
+
+      <a href="#purpose" class="nav-cta">
+        <span>Vow &amp; Impact</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile Scroll Navigation Strip -->
+    <div class="container">
+      <nav class="nav-mobile-scroll" aria-label="Mobile Navigation">
+        <a href="#about" class="nav-mobile-link">About</a>
+        <a href="#skills" class="nav-mobile-link">Skills</a>
+        <a href="#achievements" class="nav-mobile-link">Achievements</a>
+        <a href="#hobbies" class="nav-mobile-link">Hobbies</a>
+        <a href="#future" class="nav-mobile-link">Future</a>
+        <a href="#purpose" class="nav-mobile-link">Purpose</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         SECTION 1: HERO
+         ========================================================================== -->
+    <section class="hero-section" id="hero" aria-label="Hero Introduction">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Narrative -->
+          <div class="hero-content">
+            <div class="hero-badge-pill">
+              <span class="pulse-dot"></span>
+              <span>First-Year B.Tech &bull; NST x RU</span>
+              <svg class="sparkle-icon sparkle-delay-1" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
+              </svg>
+            </div>
+
+            <h1 class="hero-name">
+              <span class="grad-text-hero">Manroop Kaur</span><br>
+              <span style="color: #ffffff;">Chauhan</span>
+            </h1>
+
+            <div class="typewriter-box">
+              <span class="typewriter-text">Curious Mind &bull; Mathematician &bull; Orator</span>
+            </div>
+
+            <p class="hero-bio">
+              A first-year engineering undergraduate at <strong>Newton School of Technology &times; Rishihood University</strong>. 
+              Bridging the proof-based discipline of <strong>advanced mathematics</strong>, foundational <strong>computational thinking</strong>, 
+              and the persuasive synthesis of <strong>national-level debate</strong>.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#about" class="btn btn-primary">
+                <span>Explore Journey</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#purpose" class="btn btn-secondary">
+                <span>Core Purpose</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Avatar with Orbiting Math Symbols (∑ π ∫ ∞ √ θ) -->
+          <div class="avatar-showcase">
+            <div class="orbit-stage">
+              <!-- Orbit Track Rings -->
+              <div class="orbit-ring-outer"></div>
+              <div class="orbit-ring-middle"></div>
+              <div class="orbit-ring-inner"></div>
+
+              <!-- Central Monogram Avatar Card -->
+              <div class="monogram-avatar" title="Manroop Kaur Chauhan &mdash; NST x RU">
+                <span class="monogram-initials">MKC</span>
+                <span class="monogram-sub">NST &times; RU</span>
+              </div>
+
+              <!-- Orbiting Math Symbols -->
+              <div class="orbit-symbols-carousel" aria-hidden="true">
+                <div class="math-symbol-pill sym-1" title="Summation">&sum;</div>
+                <div class="math-symbol-pill sym-2" title="Pi">&pi;</div>
+                <div class="math-symbol-pill sym-3" title="Integral">&int;</div>
+                <div class="math-symbol-pill sym-4" title="Infinity">&infin;</div>
+                <div class="math-symbol-pill sym-5" title="Square Root">&radic;</div>
+                <div class="math-symbol-pill sym-6" title="Theta">&theta;</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2: ABOUT
+         Three glass cards (Student, Problem Solver, Communicator)
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="about" aria-label="About Dimensions">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill-tag">Triad &bull; Character</span>
+          <h2 class="section-title">The Three Dimensions</h2>
+          <p class="section-subtitle">
+            An intersection of fresh collegiate curiosity, proof-driven Olympiad rigor, and empathetic national-level rhetoric.
+          </p>
+        </div>
+
+        <div class="perspective-grid">
+          <div class="about-cards-grid">
+            
+            <!-- Card 1: Student -->
+            <article class="glass-card">
+              <div class="about-card-inner">
+                <div class="about-icon-box about-icon-student">
+                  <!-- Graduation Mortarboard & Scroll SVG -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                </div>
+                <span class="about-role-tag">Academic Trajectory</span>
+                <h3 class="about-heading">The Student</h3>
+                <p class="about-text">
+                  In my freshman year pursuing B.Tech at <strong>Newton School of Technology &times; Rishihood University</strong>. 
+                  Building an uncompromising foundation across data structures, algorithmic paradigms, and computer engineering principles.
+                </p>
+                <div class="about-pills-row">
+                  <span class="about-pill">#NSTxRU</span>
+                  <span class="about-pill">#BTechFreshman</span>
+                  <span class="about-pill">#IntellectualHunger</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Problem Solver -->
+            <article class="glass-card">
+              <div class="about-card-inner">
+                <div class="about-icon-box about-icon-solver">
+                  <!-- Polyhedral Fractal Network SVG -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="m4.93 4.93 4.24 4.24"/>
+                    <path d="m14.83 9.17 4.24-4.24"/>
+                    <path d="m14.83 14.83 4.24 4.24"/>
+                    <path d="m9.17 14.83-4.24 4.24"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <span class="about-role-tag">Mathematical Reasoning</span>
+                <h3 class="about-heading">The Problem Solver</h3>
+                <p class="about-text">
+                  Trained through high-level mathematical olympiads where intuition must be fortified with rigorous deductive proofs. 
+                  Approaching unstructured challenges by isolating invariants, reducing complexity, and reasoning from first principles.
+                </p>
+                <div class="about-pills-row">
+                  <span class="about-pill">#RMOQualifier</span>
+                  <span class="about-pill">#FirstPrinciples</span>
+                  <span class="about-pill">#StructuralRigor</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Communicator -->
+            <article class="glass-card">
+              <div class="about-card-inner">
+                <div class="about-icon-box about-icon-communicator">
+                  <!-- Sound Acoustic Waves & Microphone SVG -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                  </svg>
+                </div>
+                <span class="about-role-tag">Discourse &amp; Advocacy</span>
+                <h3 class="about-heading">The Communicator</h3>
+                <p class="about-text">
+                  Seasoned competitor on the national debating circuit. I believe true technical mastery is incomplete without the ability 
+                  to articulate complex ideas with poise, empathy, and intellectual clarity under intense public scrutiny.
+                </p>
+                <div class="about-pills-row">
+                  <span class="about-pill">#NationalDebater</span>
+                  <span class="about-pill">#StructuredRhetoric</span>
+                  <span class="about-pill">#ConsensusBuilding</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: SKILLS
+         Animated progress bars (Advanced Mathematics, Basic Python, etc.)
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="skills" aria-label="Skills & Competencies">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill-tag">Competence &bull; Transparency</span>
+          <h2 class="section-title">Technical &amp; Analytical Toolkit</h2>
+          <p class="section-subtitle">
+            A candid appraisal of current capabilities. Anchoring deep mathematical foundations while methodically scaling computational literacy.
+          </p>
+        </div>
+
+        <div class="perspective-grid">
+          <div class="skills-split-layout">
+            
+            <!-- Left: Mindset & Stats -->
+            <div class="glass-card skills-overview-card">
+              <div>
+                <blockquote class="skills-quote">
+                  &ldquo;Mathematics provides the immutable grammar of the universe; computation gives it executable leverage.&rdquo;
+                </blockquote>
+                <p class="skills-narrative">
+                  Instead of claiming superficial familiarity with fleeting buzzwords, I invest deliberately in mathematical rigor, logical proofs, 
+                  and clean algorithmic foundations. As a first-year student, my priority is rooted depth over fragile breadth.
+                </p>
+              </div>
+
+              <div class="skills-stat-strip">
+                <div class="skills-stat-tile">
+                  <span class="stat-digits">Year 1</span>
+                  <span class="stat-caption">B.Tech Undergrad at NST x RU</span>
+                </div>
+                <div class="skills-stat-tile">
+                  <span class="stat-digits">Top %</span>
+                  <span class="stat-caption">Regional Mathematical Olympiad</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Animated Skill Progress Bars -->
+            <div class="glass-card skills-bars-card">
+              
+              <!-- Skill: Advanced Mathematics -->
+              <div class="skill-block">
+                <div class="skill-meta">
+                  <div class="skill-title-group">
+                    <span class="skill-name">Advanced Mathematics</span>
+                    <span class="skill-badge badge-gold">Advanced</span>
+                  </div>
+                  <span class="skill-score">92%</span>
+                </div>
+                <div class="meter-channel">
+                  <div class="meter-fill fill-advanced-math"></div>
+                </div>
+                <div class="skill-footnote">
+                  <span>Calculus &bull; Linear Algebra &bull; Combinatorics &bull; Number Theory</span>
+                  <span>Olympiad Caliber</span>
+                </div>
+              </div>
+
+              <!-- Skill: Deductive Logic & Problem Formulation -->
+              <div class="skill-block">
+                <div class="skill-meta">
+                  <div class="skill-title-group">
+                    <span class="skill-name">First-Principles Problem Formulation</span>
+                    <span class="skill-badge badge-violet">Core Strength</span>
+                  </div>
+                  <span class="skill-score">95%</span>
+                </div>
+                <div class="meter-channel">
+                  <div class="meter-fill fill-deductive-logic"></div>
+                </div>
+                <div class="skill-footnote">
+                  <span>Proof Synthesis &bull; Structural Invariants &bull; Analytical Modeling</span>
+                  <span>Exceptional</span>
+                </div>
+              </div>
+
+              <!-- Skill: National Debate & Oratory -->
+              <div class="skill-block">
+                <div class="skill-meta">
+                  <div class="skill-title-group">
+                    <span class="skill-name">Structured Debate &amp; Rhetoric</span>
+                    <span class="skill-badge badge-pink">National Circuit</span>
+                  </div>
+                  <span class="skill-score">90%</span>
+                </div>
+                <div class="meter-channel">
+                  <div class="meter-fill fill-debate-oratory"></div>
+                </div>
+                <div class="skill-footnote">
+                  <span>Impromptu Synthesis &bull; Parliamentary Formats &bull; Rebuttal</span>
+                  <span>Championship</span>
+                </div>
+              </div>
+
+              <!-- Skill: Basic Python -->
+              <div class="skill-block">
+                <div class="skill-meta">
+                  <div class="skill-title-group">
+                    <span class="skill-name">Python Programming</span>
+                    <span class="skill-badge badge-cyan">Basic &bull; Growing</span>
+                  </div>
+                  <span class="skill-score">52%</span>
+                </div>
+                <div class="meter-channel">
+                  <div class="meter-fill fill-basic-python"></div>
+                </div>
+                <div class="skill-footnote">
+                  <span>Control Flow &bull; Data Structures &bull; Algorithmic Scripting</span>
+                  <span>High Learning Velocity</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4: ACHIEVEMENTS
+         Gold medal cards (RMO Qualifier, National Debater)
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="achievements" aria-label="Achievements & Accolades">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill-tag" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.38); color: var(--gold-light);">
+            Distinction &bull; Honor
+          </span>
+          <h2 class="section-title">Milestones of Excellence</h2>
+          <p class="section-subtitle">
+            Proven resilience in high-stakes intellectual arenas: competitive mathematical proofs and national parliamentary debate.
+          </p>
+        </div>
+
+        <div class="perspective-grid">
+          <div class="achievements-columns">
+            
+            <!-- Achievement 1: RMO Qualifier -->
+            <article class="glass-card gold-medal-card">
+              <div class="gold-medal-corner-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span>Premier Olympiad</span>
+              </div>
+
+              <div class="gold-medal-icon-wrap">
+                <!-- Gold Medal & Ribbon SVG -->
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="8" r="6"/>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                </svg>
+              </div>
+
+              <h3 class="achievement-title">RMO Qualifier</h3>
+              <p style="font-family: var(--font-mono); font-size: 0.84rem; color: var(--gold-light); margin-bottom: 1.1rem;">
+                Regional Mathematical Olympiad &bull; HBCSE (TIFR)
+              </p>
+
+              <p class="achievement-body">
+                Qualified for the Regional Mathematical Olympiad, India’s foremost national proof-based contest organized under the aegis of 
+                the National Board for Higher Mathematics. Demands non-routine problem solving across advanced geometry, functional equations, and combinatorics.
+              </p>
+
+              <div class="achievement-callout">
+                Demonstrates deep intellectual stamina, original mathematical proof synthesis, and precision under intense multi-hour conditions.
+              </div>
+            </article>
+
+            <!-- Achievement 2: National Debater -->
+            <article class="glass-card gold-medal-card">
+              <div class="gold-medal-corner-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span>National Circuit</span>
+              </div>
+
+              <div class="gold-medal-icon-wrap">
+                <!-- Orator Trophy & Laurels SVG -->
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                  <path d="M4 22h16"/>
+                  <path d="M10 14.66V17c0 .55-.45 1-1 1H7"/>
+                  <path d="M14 14.66V17c0 .55.45 1 1 1h2"/>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                </svg>
+              </div>
+
+              <h3 class="achievement-title">National Debater</h3>
+              <p style="font-family: var(--font-mono); font-size: 0.84rem; color: var(--gold-light); margin-bottom: 1.1rem;">
+                National Debating &amp; Parliamentary Championship Circuit
+              </p>
+
+              <p class="achievement-body">
+                Represented institutions on competitive national debating platforms. Mastered spontaneous thesis formulation, 
+                scrutinizing complex policy frameworks, identifying logical fallacies in real-time, and defending multifaceted motions with persuasive eloquence.
+              </p>
+
+              <div class="achievement-callout">
+                Exemplifies exceptional presence of mind, intellectual agility, and empathetic perspective-taking across contentious global themes.
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: HOBBIES
+         Floating bubbles with custom SVG icons (Basketball, Swimming, Dancing, Reading, Writing)
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="hobbies" aria-label="Hobbies & Passions">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-pill-tag">Vitality &bull; Rhythm</span>
+          <h2 class="section-title">Beyond the Desk</h2>
+          <p class="section-subtitle">
+            Kinesthetic energy, athletic endurance, and contemplative stillness. Five diverse pursuits that nurture agility and perspective.
+          </p>
+        </div>
+
+        <div class="hobbies-cluster">
+          
+          <!-- Hobby 1: Basketball -->
+          <div class="hobby-bubble bubble-float-1" title="Basketball &mdash; Team Strategy & Fast Breaks">
+            <div class="hobby-svg-box">
+              <!-- Basketball SVG with Seams -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20"/>
+                <path d="M2 12h20"/>
+                <path d="M4.93 4.93c4.24 3.54 4.24 10.6 0 14.14"/>
+                <path d="M19.07 4.93c-4.24 3.54-4.24 10.6 0 14.14"/>
+              </svg>
+            </div>
+            <h3 class="hobby-title">Basketball</h3>
+            <span class="hobby-trait">Court Vision &bull; Pace</span>
+          </div>
+
+          <!-- Hobby 2: Swimming -->
+          <div class="hobby-bubble bubble-float-2" title="Swimming &mdash; Meditative Fluidity & Endurance">
+            <div class="hobby-svg-box">
+              <!-- Swimming Waves SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 20c2 0 3-1 5-1s3 1 5 1 3-1 5-1 3 1 5 1"/>
+                <path d="M2 16c2 0 3-1 5-1s3 1 5 1 3-1 5-1 3 1 5 1"/>
+                <circle cx="16" cy="7" r="2.5"/>
+                <path d="m7 12 3-3 4 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="hobby-title">Swimming</h3>
+            <span class="hobby-trait">Flow &bull; Resilience</span>
+          </div>
+
+          <!-- Hobby 3: Dancing -->
+          <div class="hobby-bubble bubble-float-3" title="Dancing &mdash; Creative Kinesthetic Expression">
+            <div class="hobby-svg-box">
+              <!-- Dancing Silhouette / Energy SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="4" r="2"/>
+                <path d="m4 10 5 1 3-3 4 3 4-2"/>
+                <path d="M10 14v7"/>
+                <path d="m14 14 3 7"/>
+                <path d="M10 10l-2 4 4 4"/>
+              </svg>
+            </div>
+            <h3 class="hobby-title">Dancing</h3>
+            <span class="hobby-trait">Rhythm &bull; Joy</span>
+          </div>
+
+          <!-- Hobby 4: Reading -->
+          <div class="hobby-bubble bubble-float-4" title="Reading &mdash; Diverse Horizons & Philosophy">
+            <div class="hobby-svg-box">
+              <!-- Open Book SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                <path d="M6 2v17.5"/>
+                <path d="M10 6h6"/>
+                <path d="M10 10h6"/>
+              </svg>
+            </div>
+            <h3 class="hobby-title">Reading</h3>
+            <span class="hobby-trait">Curiosity &bull; Depth</span>
+          </div>
+
+          <!-- Hobby 5: Writing -->
+          <div class="hobby-bubble bubble-float-5" title="Writing &mdash; Prose Synthesis & Introspection">
+            <div class="hobby-svg-box">
+              <!-- Fountain Pen Quill SVG -->
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+                <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18"/>
+                <path d="m2 2 7.586 7.586"/>
+                <circle cx="11" cy="11" r="2"/>
+              </svg>
+            </div>
+            <h3 class="hobby-title">Writing</h3>
+            <span class="hobby-trait">Reflection &bull; Voice</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6: FUTURE
+         Spinning compass and the message “Still exploring”, framed as curiosity, not indecision.
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="future" aria-label="Future Explorations">
+      <div class="container">
+        
+        <div class="glass-card future-glass-card">
+          <div class="future-card-grid">
+            
+            <!-- Spinning Compass Visual -->
+            <div class="compass-centerpiece">
+              <div class="compass-dial" title="The Compass of Active Exploration">
+                <div class="compass-ticks-ring"></div>
+                
+                <!-- Cardinal Coordinate Points -->
+                <div class="compass-cardinal-labels" aria-hidden="true">
+                  <span class="cardinal-point-n">N</span>
+                  <span class="cardinal-point-s">S</span>
+                  <span class="cardinal-point-e">E</span>
+                  <span class="cardinal-point-w">W</span>
+                </div>
+
+                <!-- Animated Needle Sweeping / Swaying -->
+                <svg class="compass-needle-layer" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                  <!-- North Needle: Luminous Cyan to Violet -->
+                  <polygon points="50,14 43,50 57,50" fill="url(#needle-north)"/>
+                  <!-- South Needle: Deep Slate -->
+                  <polygon points="50,86 43,50 57,50" fill="url(#needle-south)"/>
+                  <defs>
+                    <linearGradient id="needle-north" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#22d3ee"/>
+                      <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                    <linearGradient id="needle-south" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#334155"/>
+                      <stop offset="100%" stop-color="#0f172a"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div class="compass-pivot-pin"></div>
+              </div>
+
+              <div class="compass-label-pill">
+                <span class="pulse-dot" style="background-color: var(--cyan-primary); box-shadow: 0 0 8px var(--cyan-primary);"></span>
+                <span>Vector: High-Agency Exploration</span>
+              </div>
+            </div>
+
+            <!-- Future Narrative Content -->
+            <div class="future-details">
+              <span class="future-tagline-badge">Trajectory &bull; Deliberate Strategy</span>
+              <h2 class="future-main-heading">
+                &ldquo;Still Exploring&rdquo; &mdash;<br>
+                <span class="grad-text-cyan">Curiosity, Not Indecision.</span>
+              </h2>
+
+              <p class="future-manifesto">
+                Premature specialization is premature optimization. As a first-year student, I treat these foundational years as an intentional laboratory. 
+                My mission is not to rush into a comfortable box, but to build formidable mathematical foundations, software fluency, and discourse mastery 
+                before choosing where to exert maximum leverage.
+              </p>
+
+              <!-- Exploration Quadrants -->
+              <div class="exploration-quadrant">
+                <div class="quadrant-box">
+                  <div class="quadrant-title">&oplus; Theoretical Foundations</div>
+                  <div class="quadrant-desc">Exploring how mathematical logic unlocks resilient computational architectures.</div>
+                </div>
+                <div class="quadrant-box">
+                  <div class="quadrant-title">&oplus; Engineering Fluency</div>
+                  <div class="quadrant-desc">Evolving Python fundamentals into high-performance, robust software engineering.</div>
+                </div>
+                <div class="quadrant-box">
+                  <div class="quadrant-title">&oplus; Discourse &amp; Ethics</div>
+                  <div class="quadrant-desc">Utilizing debate training to ask hard ethical questions about technological systems.</div>
+                </div>
+                <div class="quadrant-box">
+                  <div class="quadrant-title">&oplus; Systemic Impact</div>
+                  <div class="quadrant-desc">Identifying unglamorous, high-impact societal challenges that need solving.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7: PURPOSE
+         Headline: “Success, measured by who I lift up”
+         Beating heart with ripples spreading outward, three pillars, closing vow.
+         ========================================================================== -->
+    <section class="section-wrapper reveal-on-scroll" id="purpose" aria-label="Life Purpose & Ethos">
+      <div class="container">
+        
+        <div class="purpose-header-block">
+          <span class="section-pill-tag" style="background: rgba(236, 72, 153, 0.12); border-color: rgba(236, 72, 153, 0.38); color: var(--pink-light);">
+            North Star &bull; Core Purpose
+          </span>
+          <h2 class="purpose-headline">
+            &ldquo;Success, measured by<br>
+            <span class="grad-text-pink">who I lift up.&rdquo;</span>
+          </h2>
+          <p class="purpose-intro">
+            Skill and intellect are hollow without a purpose larger than oneself. 
+            My guiding aspiration is to grow into a respected figure of uncompromising competence, 
+            so that I am in a genuine position to make a lasting, uplifting impact on society.
+          </p>
+        </div>
+
+        <!-- Centerpiece: Beating Heart with Outward Ripples -->
+        <div class="heart-ripple-stage" aria-label="Animated Beating Heart with Radiating Waves">
+          <!-- Concentric Expanding Ripples -->
+          <div class="ripple-ring ripple-delay-1" aria-hidden="true"></div>
+          <div class="ripple-ring ripple-delay-2" aria-hidden="true"></div>
+          <div class="ripple-ring ripple-delay-3" aria-hidden="true"></div>
+
+          <!-- Pulsing Heart Centerpiece -->
+          <div class="pulsing-heart-emblem" title="Beating Heart Driven by Service">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Three Pillars (Earn respect, Build capability, Create impact) -->
+        <div class="perspective-grid">
+          <div class="three-pillars-grid">
+            
+            <!-- Pillar 1: Earn Respect -->
+            <article class="glass-card pillar-card-box">
+              <span class="pillar-indexer">PILLAR 01</span>
+              <h3 class="pillar-title">Earn Respect</h3>
+              <p class="pillar-text">
+                Not by demanding authority or seeking vanity, but through unbending intellectual integrity, quiet consistency, 
+                and holding myself to the highest ethical and academic standards.
+              </p>
+            </article>
+
+            <!-- Pillar 2: Build Capability -->
+            <article class="glass-card pillar-card-box">
+              <span class="pillar-indexer">PILLAR 02</span>
+              <h3 class="pillar-title">Build Capability</h3>
+              <p class="pillar-text">
+                Empathy without strength cannot protect or build. I dedicate myself to mastering mathematical rigor and software systems 
+                so that when difficult problems arrive, I possess the technical power to solve them.
+              </p>
+            </article>
+
+            <!-- Pillar 3: Create Impact -->
+            <article class="glass-card pillar-card-box">
+              <span class="pillar-indexer">PILLAR 03</span>
+              <h3 class="pillar-title">Create Impact</h3>
+              <p class="pillar-text">
+                Using earned trust and capability as leverage to elevate the people around me—opening doors for others, 
+                championing vulnerable communities, and engineering tools that leave society fundamentally better.
+              </p>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Closing First-Person Vow Manifesto Card -->
+        <div class="glass-card vow-manifesto-card">
+          <span class="vow-tag-pill">A Personal Vow</span>
+          <blockquote class="vow-declaration">
+            &ldquo;I vow to grow into someone people can unconditionally rely on. 
+            I will never treat competence as a prize for vanity, but as a sacred responsibility&mdash;to 
+            earn standing through substance, to build trust through consistency, and to use every position 
+            I am blessed with to lift others up toward a more dignified, empowered future.&rdquo;
+          </blockquote>
+
+          <div class="vow-signoff">
+            <div>
+              <div class="vow-signee-name">Manroop Kaur Chauhan</div>
+              <div class="vow-signee-creds">First-Year B.Tech Undergrad &bull; Newton School of Technology &times; Rishihood University</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SECTION 8: FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-columns-grid">
+        
+        <!-- Bio & Philosophy -->
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #ffffff; margin-bottom: 0.75rem;">
+            Manroop Kaur Chauhan
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.68; max-width: 380px; margin-bottom: 1.25rem;">
+            First-year engineering undergraduate at NST x RU. RMO Qualifier, National Debater, and purposeful explorer 
+            dedicated to mathematical rigor and human uplift.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--cyan-light); font-family: var(--font-mono); font-size: 0.8rem;">
+            <span class="pulse-dot" style="background-color: var(--cyan-primary); box-shadow: 0 0 6px var(--cyan-primary);"></span>
+            <span>Welcoming intellectual discussions &amp; mentorship</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links to Every Section -->
+        <div>
+          <div class="footer-col-headline">Navigation</div>
+          <ul class="footer-links-col">
+            <li><a href="#about" class="footer-anchor">&rarr; About &amp; Identity</a></li>
+            <li><a href="#skills" class="footer-anchor">&rarr; Skills &amp; Analytics</a></li>
+            <li><a href="#achievements" class="footer-anchor">&rarr; Honors &amp; Achievements</a></li>
+            <li><a href="#hobbies" class="footer-anchor">&rarr; Hobbies &amp; Vitality</a></li>
+            <li><a href="#future" class="footer-anchor">&rarr; Future Horizon</a></li>
+            <li><a href="#purpose" class="footer-anchor">&rarr; Core Purpose &amp; Vow</a></li>
+          </ul>
+        </div>
+
+        <!-- Coordinates & Institutional Context -->
+        <div>
+          <div class="footer-col-headline">Coordinates</div>
+          <ul class="footer-links-col">
+            <li class="footer-anchor"><strong>Institution:</strong> Newton School of Technology</li>
+            <li class="footer-anchor"><strong>University:</strong> Rishihood University</li>
+            <li class="footer-anchor"><strong>Degree:</strong> B.Tech in Computer Science</li>
+            <li class="footer-anchor"><strong>Class of:</strong> 2029 (Freshman Year)</li>
+            <li class="footer-anchor"><strong>Location:</strong> Sonipat, Delhi NCR, India</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-sub-bar">
+        <div>
+          &copy; 2026 Manroop Kaur Chauhan &bull; Handcrafted Single-File Portfolio &bull; Pure Semantic HTML &amp; CSS &bull; Zero JavaScript &bull; Zero External Images
+        </div>
+        <a href="#top" class="return-top-btn" aria-label="Return to the top of the page">
+          <span>Back to Top &uarr;</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
